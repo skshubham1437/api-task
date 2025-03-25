@@ -12,7 +12,7 @@ const options = {
       servers: [
         {
           url: `${process.env.BASEURL}/api/v1`,
-          description: "Local Development Server",
+          description: "Development Server",
         },
       ],
       components: {
