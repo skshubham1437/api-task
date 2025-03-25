@@ -1,0 +1,31 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Product {
+  id           Int      @id @default(autoincrement())
+  productId    Int      @unique
+  name         String
+  availableDays String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  slots        Slot[]
+}
+
+model Slot {
+  id              Int      @id @default(autoincrement())
+  productId       Int
+  startTime       String
+  startDate       DateTime
+  remaining       Int
+  price          Json
+  paxAvailability Json
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  product         Product  @relation(fields: [productId], references: [productId])
+}
